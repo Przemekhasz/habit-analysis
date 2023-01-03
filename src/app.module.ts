@@ -1,13 +1,17 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { CatsController } from './cats/cats.controller';
-import { CatsModule } from './cats/cats.module';
-import { logger } from './common/middleware/logger.middleware';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApiModule } from './api/api.module';
+import { getEnvPath } from './common/helper/env.helper';
+import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
+
+const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
 @Module({
-  imports: [CatsModule],
+  imports: [
+    ConfigModule.forRoot({ envFilePath, isGlobal: true }),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    ApiModule,
+  ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(logger).forRoutes(CatsController);
-  }
-}
+export class AppModule {}
