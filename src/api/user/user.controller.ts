@@ -4,13 +4,14 @@ import {
     Controller,
     Get,
     Inject,
+    Param,
     Put,
     Req,
     UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { JwtAuthGuard } from './auth/auth.guard';
+import { JwtAuthGuard } from '../auth/auth.guard';
 import { UpdateNameDto } from './user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -21,7 +22,7 @@ export class UserController {
     private readonly service: UserService;
 
     @Get()
-    findAll() {
+    private findAll() {
         return this.service.findAll();
     }
 

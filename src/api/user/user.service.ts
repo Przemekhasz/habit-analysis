@@ -6,8 +6,10 @@ import { UpdateNameDto } from './user.dto';
 import { User } from './user.entity';
 
 export interface UserInterface {
-    username: string;
+    id: number;
     email: string;
+    username: string;
+    lastLoginAt: Date;
 }
 
 @Injectable()
