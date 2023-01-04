@@ -7,52 +7,52 @@ import { AuthHelper } from './auth.helper';
 
 @Injectable()
 export class AuthService {
-    @InjectRepository(User)
-    private readonly repository: Repository<User>;
+  @InjectRepository(User)
+  private readonly repository: Repository<User>;
 
-    @Inject(AuthHelper)
-    private readonly helper: AuthHelper;
+  @Inject(AuthHelper)
+  private readonly helper: AuthHelper;
 
-    public async register(body: RegisterDto): Promise<User | never> {
-        const { username, email, password }: RegisterDto = body;
-        let user: User = await this.repository.findOne({ where: { email } });
+  public async register(body: RegisterDto): Promise<User | never> {
+    const { username, email, password }: RegisterDto = body;
+    let user: User = await this.repository.findOne({ where: { email } });
 
-        if (user) {
-            throw new HttpException('Conflict', HttpStatus.CONFLICT);
-        }
-
-        user = new User();
-        user.username = username;
-        user.email = email;
-        user.password = this.helper.encodePassword(password);
-
-        return this.repository.save(user);
+    if (user) {
+      throw new HttpException('Conflict', HttpStatus.CONFLICT);
     }
 
-    public async login(body: LoginDto): Promise<string | never> {
-        const { email, password }: LoginDto = body;
-        const user: User = await this.repository.findOne({ where: { email } });
+    user = new User();
+    user.username = username;
+    user.email = email;
+    user.password = this.helper.encodePassword(password);
 
-        if (!user) {
-            throw new HttpException('No user found', HttpStatus.NOT_FOUND);
-        }
+    return this.repository.save(user);
+  }
 
-        const isPasswordValid: boolean = this.helper.isPasswordValid(
-            password,
-            user.password
-        );
-        if (!isPasswordValid) {
-            throw new HttpException('No user found', HttpStatus.NOT_FOUND);
-        }
+  public async login(body: LoginDto): Promise<string | never> {
+    const { email, password }: LoginDto = body;
+    const user: User = await this.repository.findOne({ where: { email } });
 
-        this.repository.update(user.id, { lastLoginAt: new Date() });
-
-        return this.helper.generateToken(user);
+    if (!user) {
+      throw new HttpException('No user found', HttpStatus.NOT_FOUND);
     }
 
-    public async refresh(user: User): Promise<string> {
-        this.repository.update(user.id, { lastLoginAt: new Date() });
-
-        return this.helper.generateToken(user);
+    const isPasswordValid: boolean = this.helper.isPasswordValid(
+      password,
+      user.password
+    );
+    if (!isPasswordValid) {
+      throw new HttpException('No user found', HttpStatus.NOT_FOUND);
     }
+
+    this.repository.update(user.id, { lastLoginAt: new Date() });
+
+    return this.helper.generateToken(user);
+  }
+
+  public async refresh(user: User): Promise<string> {
+    this.repository.update(user.id, { lastLoginAt: new Date() });
+
+    return this.helper.generateToken(user);
+  }
 }
