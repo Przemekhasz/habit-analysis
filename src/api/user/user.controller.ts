@@ -2,6 +2,7 @@ import {
     Body,
     ClassSerializerInterceptor,
     Controller,
+    Get,
     Inject,
     Put,
     Req,
@@ -19,7 +20,12 @@ export class UserController {
     @Inject(UserService)
     private readonly service: UserService;
 
-    @Put('name')
+    @Get()
+    findAll() {
+        return this.service.findAll();
+    }
+
+    @Put('username')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(ClassSerializerInterceptor)
     private updateName(

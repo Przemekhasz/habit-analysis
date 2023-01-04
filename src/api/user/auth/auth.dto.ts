@@ -10,13 +10,13 @@ export class RegisterDto {
 
     @IsString()
     @MinLength(8)
-    @ApiProperty({ example: '12345678' })
+    @ApiProperty({ example: '12345678', minimum: 8 })
     public readonly password: string;
 
     @IsString()
     @IsOptional()
-    @ApiProperty({ example: 'optional user name' })
-    public readonly name: string;
+    @ApiProperty({ example: 'optional username' })
+    public readonly username: string;
 }
 
 export class LoginDto {
@@ -26,6 +26,6 @@ export class LoginDto {
     public readonly email: string;
 
     @IsString()
-    @ApiProperty({ example: '12345678' })
+    @ApiProperty({ example: '12345678', minimum: 8 })
     public readonly password: string;
 }

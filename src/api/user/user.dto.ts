@@ -5,5 +5,5 @@ export class UpdateNameDto {
     @IsString()
     @IsOptional()
     @ApiProperty({ example: 'Johndeere', description: 'The name of the user' })
-    public readonly name?: string;
+    public readonly username?: string;
 }
