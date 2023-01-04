@@ -4,15 +4,15 @@ import { User } from '../user.entity';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') implements IAuthGuard {
-  public handleRequest(err: unknown, user: User): any {
-    return user;
-  }
+    public handleRequest(err: unknown, user: User): any {
+        return user;
+    }
 
-  public async canActivate(ctx: ExecutionContext): Promise<boolean> {
-    await super.canActivate(ctx);
+    public async canActivate(ctx: ExecutionContext): Promise<boolean> {
+        await super.canActivate(ctx);
 
-    const user: Request = ctx.switchToHttp().getRequest();
+        const user: Request = ctx.switchToHttp().getRequest();
 
-    return user ? true : false;
-  }
+        return user ? true : false;
+    }
 }

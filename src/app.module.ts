@@ -8,10 +8,10 @@ import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({ envFilePath, isGlobal: true }),
-    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    ApiModule,
-  ],
+    imports: [
+        ConfigModule.forRoot({ envFilePath, isGlobal: true }),
+        TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+        ApiModule,
+    ],
 })
 export class AppModule {}
