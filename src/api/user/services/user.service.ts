@@ -38,8 +38,7 @@ export class UserService {
         HttpStatus.BAD_REQUEST
       );
     const newProfile = this.profileRepository.create(createUserProfileDetails);
-    const savedProfile = await this.profileRepository.save(newProfile);
-    user.profile = savedProfile;
+    user.profile = await this.profileRepository.save(newProfile);
 
     return this.userRepository.save(user);
   }
