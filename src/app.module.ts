@@ -5,6 +5,7 @@ import { ApiModule } from './api/api.module';
 import { getEnvPath } from './common/helper/env.helper';
 import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { HabitModule } from './api/habit/habit.module';
+import { AnalysisModule } from './api/analysis/analysis.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -14,6 +15,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     ApiModule,
     HabitModule,
+    AnalysisModule,
   ],
 })
 export class AppModule {}

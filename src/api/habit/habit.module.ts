@@ -4,6 +4,6 @@ import { HabitController } from './habit.controller';
 
 @Module({
   controllers: [HabitController],
-  providers: [HabitService]
+  providers: [HabitService],
 })
 export class HabitModule {}

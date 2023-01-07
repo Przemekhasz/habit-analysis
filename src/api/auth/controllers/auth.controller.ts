@@ -8,10 +8,10 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { User } from '../user/user.entity';
-import { LoginDto, RegisterDto } from './auth.dto';
-import { JwtAuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
+import { User } from '../../typeorm/entities/user.entity';
+import { LoginDto, RegisterDto } from '../dtos/auth.dto';
+import { JwtAuthGuard } from '../auth.guard';
+import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
 export class AuthController {
