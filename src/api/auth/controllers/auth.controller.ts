@@ -12,6 +12,7 @@ import { User } from '../../typeorm/entities/user.entity';
 import { LoginDto, RegisterDto } from '../dtos/auth.dto';
 import { JwtAuthGuard } from '../auth.guard';
 import { AuthService } from '../services/auth.service';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
