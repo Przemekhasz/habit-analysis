@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "env": {
+        "NODE_ENV": "prod",
+        "PORT": 3000
+      },
+      "exec_mode": "cluster",
+      "instances": 1,
+      "name": "api",
+      "script": "dist/main.js"
+    }
+  ]
+}
