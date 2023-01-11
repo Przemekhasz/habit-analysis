@@ -8,7 +8,8 @@ import {
   CreateUserPostParams,
   CreateUserProfileParams,
   UpdateUserParams,
-} from '../../utils/types';
+  UpdateUserPostParams, UpdateUserProfileParams
+} from "../../utils/types";
 
 @Injectable()
 export class UserService {
@@ -43,6 +44,16 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
+  public updateUserProfile(
+    id: number,
+    updateUserProfileDetails: UpdateUserProfileParams
+  ) {
+    return this.profileRepository.update(
+      { id },
+      { ...updateUserProfileDetails }
+    );
+  }
+
   public async createUserPost(
     id: number,
     createUserPostDetails: CreateUserPostParams
@@ -59,5 +70,12 @@ export class UserService {
     });
 
     return this.postRepository.save(newPost);
+  }
+
+  public updateUserPost(
+    id: number,
+    updateUserPostDetails: UpdateUserPostParams
+  ) {
+    return this.postRepository.update({ id }, { ...updateUserPostDetails });
   }
 }
