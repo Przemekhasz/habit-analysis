@@ -6,6 +6,7 @@ import { getEnvPath } from './common/helper/env.helper';
 import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { HabitModule } from './api/habit/habit.module';
 import { AnalysisModule } from './api/analysis/analysis.module';
+import { AppController } from './app.controller';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -17,5 +18,6 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     HabitModule,
     AnalysisModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
