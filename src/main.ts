@@ -1,10 +1,10 @@
-import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import tracer from './tracer';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-import tracer from './tracer';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create(AppModule);

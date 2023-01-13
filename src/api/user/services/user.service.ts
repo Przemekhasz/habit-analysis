@@ -8,8 +8,9 @@ import {
   CreateUserPostParams,
   CreateUserProfileParams,
   UpdateUserParams,
-  UpdateUserPostParams, UpdateUserProfileParams
-} from "../../utils/types";
+  UpdateUserPostParams,
+  UpdateUserProfileParams,
+} from '../../utils/types';
 
 @Injectable()
 export class UserService {

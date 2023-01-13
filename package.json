@@ -12,6 +12,7 @@
     "start:dev": "nodemon --config nodemon.json",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "deploy": "npm ci && npm run build && npm run start:prod",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -24,6 +25,10 @@
     "pm2:destroy:app": "pm2 delete app.json"
   },
   "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.188.0",
+    "@aws-cdk/aws-lambda": "^1.188.0",
+    "@aws-cdk/aws-s3": "^1.188.0",
+    "@aws-cdk/core": "^1.188.0",
     "@hewmen/serverless-plugin-typescript": "^1.1.17",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
