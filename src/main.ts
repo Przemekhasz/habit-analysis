@@ -12,8 +12,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   await tracer.start();
-  await app.listen(port, () => {
-    console.log('[WEB]', `http://localhost:${port}`);
-  });
+  await app.listen(port || 3000);
 }
 bootstrap();
